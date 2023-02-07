@@ -1,60 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | News homepage</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <title>Frontend Mentor | News homepage</title>
 
-  Home
-  New
-  Popular
-  Trending
-  Categories
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
 
-  The Bright Future of Web 3.0?
+    <style>
+      :root {
+        --ff: Inter, sans-serif;
+        --fs: 1.5rem;
+        --fw-400: 400;
+        --fw-700: 700;
+        --fw-800: 800;
 
-  We dive into the next evolution of the web that claims to put the power of the platforms back into the hands of the people. 
-  But is it really fulfilling its promise?
+        --Soft-orange: hsl(35, 77%, 62%);
+        --Soft-red: hsl(5, 85%, 63%);
+        --Off-white: hsl(36, 100%, 99%);
+        --Grayish-blue: hsl(233, 8%, 79%);
+        --Dark-grayish-blue: hsl(236, 13%, 42%);
+        --Very-dark-blue: hsl(240, 100%, 5%);
+      }
 
-  Read more
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
 
-  New 
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
 
-  Hydrogen VS Electric Cars
-  Will hydrogen-fueled cars ever catch up to EVs?
+      html {
+        font-size: 62.5%;
+      }
 
-  The Downsides of AI Artistry
-  What are the possible adverse effects of on-demand AI image generation?
+      body {
+        font-family: var(--ff);
+        font-size: var(--fs);
+        font-weight: var(--fw-400);
+        line-height: 1.7;
+        color: hsl(236, 13%, 42%);
+        min-height: 100vh;
+      }
 
-  Is VC Funding Drying Up?
-  Private funding by VC firms is down 50% YOY. We take a look at what that means.
+      h1,
+      h2,
+      h3 {
+        line-height: 1;
+        font-weight: var(--fw-800);
+      }
 
-  01
-  Reviving Retro PCs
-  What happens when old PCs are given modern upgrades?
+      h1 {
+        color: hsl(240, 100%, 5%);
+        font-size: 4rem;
+      }
 
-  02
-  Top 10 Laptops of 2022
-  Our best picks for various needs and budgets.
+      img {
+        max-width: 100%;
+      }
 
-  03
-  The Growth of Gaming
-  How the pandemic has sparked fresh opportunities.
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+      .margin-top > * + * {
+        margin-top: var(--top, 1em);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 1.2em 2.5em;
+        background-color: hsl(5, 85%, 63%);
+        color: hsl(36, 100%, 99%);
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        border: none;
+        appearance: none;
+        font-weight: var(--fw-800);
+        --top: 2.4rem;
+        font-size: 1.35rem;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #000;
+        color: #fff;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000;
+        font-size: 1.6rem;
+      }
+
+      a > :hover {
+        color: hsl(35, 77%, 62%) !important;
+      }
+
+      .wrapper {
+        width: min(91.5%, 1150px);
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .header .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .open-nav,
+      .close-nav {
+        cursor: pointer;
+      }
+
+      .header {
+        padding: 3rem 0 2.8rem;
+      }
+
+      .logo {
+        line-height: 0;
+      }
+
+      .logo > img {
+        width: 45px;
+      }
+
+      ul a {
+        color: hsl(236, 13%, 42%);
+      }
+
+      /* main */
+      main .wrapper {
+        display: grid;
+        gap: 6.4rem;
+      }
+
+      main .wrapper > article {
+        display: grid;
+        gap: var(--gap, 2.1rem);
+      }
+
+      main aside {
+        background-color: hsl(240, 100%, 5%);
+        color: hsl(233, 8%, 79%);
+        padding: 2.7rem 2rem;
+      }
+
+      aside h2 {
+        color: hsl(35, 77%, 62%);
+        font-size: 3rem;
+      }
+
+      aside > h2 + div {
+        --top: 3.7rem;
+      }
+
+      aside article {
+        --top: 0.8em;
+      }
+
+      .aside_content {
+        display: grid;
+        gap: 3.4rem;
+      }
+
+      .aside_content article:not(:last-child) {
+        padding-bottom: 3rem;
+        border-bottom: 1px solid var(--Off-white);
+      }
+
+      aside h3 {
+        color: hsl(36, 100%, 99%);
+      }
+
+      /* footer */
+      .footer {
+        margin-top: 6.5rem;
+      }
+
+      .footer img {
+        width: 100px;
+      }
+
+      .footer article {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 2.5rem;
+      }
+
+      .footer span {
+        font-weight: var(--fw-800);
+        font-size: 3rem;
+        line-height: 1;
+        color: hsl(233, 8%, 79%);
+      }
+
+      .footer h3 {
+        color: hsl(240, 100%, 5%);
+        font-size: 1.6rem;
+      }
+
+      .footer .wrapper {
+        display: grid;
+        gap: 3rem;
+      }
+
+      .footer_article-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+      }
+
+      @media (max-width: 700px) {
+        .desktopImg {
+          display: none;
+        }
+
+        .nav {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          transform: translate(100%, 0);
+        }
+
+        .transparent-nav {
+          flex-grow: 1;
+          background: rgba(0, 0, 0, 0.5);
+        }
+
+        .ul-div {
+          background-color: #fff;
+          flex-basis: 68.5%;
+          padding-left: 2rem;
+        }
+
+        .nav ul {
+          margin-top: 60%;
+          display: flex;
+          flex-direction: column;
+          gap: 1.4em;
+        }
+
+        .close-nav-btn {
+          position: absolute;
+          right: 2rem;
+          top: 2rem;
+        }
+      }
+
+      @media (min-width: 700px) {
+        .close-nav-btn,
+        .open-nav-btn {
+          display: none;
+        }
+
+        .nav ul {
+          display: flex;
+          gap: 1em;
+        }
+
+        .mobileImg {
+          display: none;
+        }
+
+        .desktopImg {
+          grid-column: span 2;
+        }
+
+        main .wrapper {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          gap: 3rem;
+        }
+
+        main .wrapper > article {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .footer .wrapper {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="wrapper">
+        <div class="logo"><img src="/assets/images/logo.svg" alt="" /></div>
+        <div class="open-nav-btn">
+          <img src="/assets/images/icon-menu.svg" alt="" class="open-nav" />
+        </div>
+        <div class="nav">
+          <div class="transparent-nav"></div>
+          <div class="ul-div">
+            <ul>
+              <li><a href="">Home</a></li>
+              <li><a href="">New</a></li>
+              <li><a href="">Popular</a></li>
+              <li><a href="">Trending</a></li>
+              <li><a href="">Categories</a></li>
+              <div class="close-nav-btn">
+                <img
+                  class="close-nav"
+                  src="/assets/images/icon-menu-close.svg"
+                  alt=""
+                />
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="wrapper">
+        <article>
+          <img
+            class="desktopImg"
+            src="/assets/images/image-web-3-desktop.jpg"
+            alt=""
+          />
+          <img
+            class="mobileImg"
+            src="/assets/images/image-web-3-mobile.jpg"
+            alt=""
+          />
+          <h1>The Bright Future of Web 3.0?</h1>
+          <div class="article_content margin-top">
+            <p>
+              We dive into the next evolution of the web that claims to put the
+              power of the platforms back into the hands of the people. But is
+              it really fulfilling its promise?
+            </p>
+            <button class="btn">read more</button>
+          </div>
+        </article>
+        <aside class="margin-top">
+          <h2>New</h2>
+          <div class="aside_content">
+            <article class="margin-top">
+              <a href="">
+                <h3>Hydrogen VS Electric Cars</h3>
+              </a>
+              <p>Will hydrogen-fueled cars ever catch up to EVs?</p>
+            </article>
+            <article class="margin-top">
+              <a href="">
+                <h3>The Downsides of AI Artistry</h3>
+              </a>
+              <p>
+                What are the possible adverse effects of on-demand AI image
+                generation?
+              </p>
+            </article>
+            <article class="margin-top">
+              <a href="">
+                <h3>Is VC Funding Drying Up?</h3>
+              </a>
+              <p>
+                Private funding by VC firms is down 50% YOY. We take a look at
+                what that means.
+              </p>
+            </article>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="wrapper">
+        <article>
+          <div class="footerimg">
+            <img src="/assets/images/image-retro-pcs.jpg" alt="" />
+          </div>
+          <div class="footer_article-content">
+            <span>01</span>
+            <a href="">
+              <h3>Reviving Retro PCs</h3>
+            </a>
+            <p>What happens when old PCs are given modern upgrades?</p>
+          </div>
+        </article>
+        <article>
+          <div class="footerimg">
+            <img src="/assets/images/image-top-laptops.jpg" alt="" />
+          </div>
+          <div class="footer_article-content">
+            <span>02</span>
+            <a href="">
+              <h3>Top 10 Laptops of 2022</h3>
+            </a>
+            <p>Our best picks for various needs and budgets.</p>
+          </div>
+        </article>
+        <article>
+          <div class="footerimg">
+            <img src="/assets/images/image-gaming-growth.jpg" alt="" />
+          </div>
+          <div class="footer_article-content">
+            <span>03</span>
+            <a href="">
+              <h3>The Growth of Gaming</h3>
+            </a>
+            <p>How the pandemic has sparked fresh opportunities.</p>
+          </div>
+        </article>
+      </div>
+    </footer>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by
+      <a href="https://github.com/Bernardanxiety">Bernardanxiety</a>.
+    </div>
+    <script src="app.js"></script>
+  </body>
 </html>
